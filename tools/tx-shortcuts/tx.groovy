@@ -10,6 +10,10 @@ import org.arl.unet.phy.*
 
 // CONTROL frame commands
 c = { Object... args ->
+    if (args.length > 2) {
+        println "Error: c() accepts at most 2 arguments (to, data). You provided ${args.length}."
+        return
+    }
     if (args.length == 0) {
         phy << new TxFrameReq(type: Physical.CONTROL)
         println "CONTROL frame sent (broadcast)"
