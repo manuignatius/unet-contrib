@@ -28,6 +28,10 @@ c = { Object... args ->
 
 // DATA frame commands
 d = { Object... args ->
+    if (args.length > 2) {
+        println "Error: d() accepts at most 2 arguments (to, data). You provided ${args.length}."
+        return
+    }
     if (args.length == 0) {
         phy << new TxFrameReq(type: Physical.DATA)
         println "DATA frame sent (broadcast)"
